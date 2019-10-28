@@ -1,4 +1,3 @@
-const mongoose = require("mongoose");
 const productService = require("./../services/product.service");
 
 exports.findAll = (req, res) => productService.findAll(req, res);

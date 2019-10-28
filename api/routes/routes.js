@@ -2,6 +2,7 @@ module.exports = app => {
   const CategoryController = require("./../controllers/category.controller");
   const AttributeController = require("./../controllers/attribute.controller");
   const ProductController = require("./../controllers/product.controller");
+  const UserController = require("./../controllers/user.controller");
 
   // Category
   app.route("/categories").get(CategoryController.findAll);
@@ -21,4 +22,10 @@ module.exports = app => {
   app.route("/products/:id").get(ProductController.find);
   app.route("/products/:id").put(ProductController.update);
   app.route("/products/:id").delete(ProductController.delete);
+  // User
+  app.route("/users").get(UserController.findAll);
+  app.route("/users").post(UserController.create);
+  app.route("/users/:id").get(UserController.find);
+  app.route("/users/:id").put(UserController.update);
+  app.route("/users/:id").delete(UserController.delete);
 };
