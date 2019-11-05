@@ -35,54 +35,52 @@ const Login = props => {
   return (
     <Container>
       <Row>
-        <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
-          <div className="card card-signin my-5">
-            <div className="card-body">
-              <h5 className="card-title text-center">Connexion</h5>
-              <Formik
-                initialValues={{ email: "", password: "" }}
-                validate={validate}
-                onSubmit={handleSubmit}
-              >
-                {({ isSubmitting }) => (
-                  <Form className="form-signin">
-                    <div className="form-label-group">
-                      <Field
-                        type="email"
-                        name="email"
-                        placeholder="Adresse email"
-                        className="form-control"
-                      />
-                      <ErrorMessage
-                        name="email"
-                        component="div"
-                        className="error"
-                      />
-                    </div>
-                    <div className="form-label-group">
-                      <Field
-                        type="password"
-                        name="password"
-                        placeholder="Mot de passe"
-                        className="form-control"
-                      />
-                      <ErrorMessage
-                        name="password"
-                        component="div"
-                        className="error"
-                      />
-                    </div>
-                    <Button
-                      className="btn btn-lg btn-primary btn-block text-uppercase"
-                      type="submit"
-                      disabled={isSubmitting}
-                    >
-                      Se connecter
-                    </Button>
-                  </Form>
-                )}
-              </Formik>
-            </div>
+        <div className="mx-auto w-100">
+          <div className="my-5">
+            <h4 className="text-center">Connexion</h4>
+            <Formik
+              initialValues={{ email: "", password: "" }}
+              validate={validate}
+              onSubmit={handleSubmit}
+            >
+              {({ isSubmitting }) => (
+                <Form className="form-signin">
+                  <div className="form-label-group">
+                    <Field
+                      type="email"
+                      name="email"
+                      placeholder="Adresse email"
+                      className="form-control"
+                    />
+                    <ErrorMessage
+                      name="email"
+                      component="div"
+                      className="error"
+                    />
+                  </div>
+                  <div className="form-label-group">
+                    <Field
+                      type="password"
+                      name="password"
+                      placeholder="Mot de passe"
+                      className="form-control"
+                    />
+                    <ErrorMessage
+                      name="password"
+                      component="div"
+                      className="error"
+                    />
+                  </div>
+                  <Button
+                    className="btn btn-lg btn-primary btn-block text-uppercase"
+                    type="submit"
+                    disabled={isSubmitting}
+                  >
+                    Se connecter
+                  </Button>
+                </Form>
+              )}
+            </Formik>
           </div>
         </div>
       </Row>
