@@ -4,7 +4,7 @@ import { Button, Container, Row } from "react-bootstrap";
 import AuthService from "../../shared/services/auth.service";
 import "./Login.css";
 
-const Login = props => {
+const Login = ({ handleClose }) => {
   const validate = values => {
     let errors = {};
     if (!values.email) {
@@ -37,9 +37,12 @@ const Login = props => {
       <Row>
         <div className="mx-auto w-100">
           <div className="my-5">
-            <h4 className="text-center">Connexion</h4>
+            <h4 className="text-center"> Connexion </h4>
             <Formik
-              initialValues={{ email: "", password: "" }}
+              initialValues={{
+                email: "",
+                password: ""
+              }}
               validate={validate}
               onSubmit={handleSubmit}
             >
@@ -71,13 +74,21 @@ const Login = props => {
                       className="error"
                     />
                   </div>
-                  <Button
-                    className="btn btn-lg btn-primary btn-block text-uppercase"
-                    type="submit"
-                    disabled={isSubmitting}
-                  >
-                    Se connecter
-                  </Button>
+                  <div className="d-flex">
+                    <Button
+                      className="btn btn-secondary mr-2"
+                      onClick={handleClose}
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      className="btn btn-lg btn-primary btn-block text-uppercase"
+                      type="submit"
+                      disabled={isSubmitting}
+                    >
+                      Se connecter
+                    </Button>
+                  </div>
                 </Form>
               )}
             </Formik>

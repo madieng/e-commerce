@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Link } from "react-router-dom";
-import MyDialog from "../dialog/MyDialog";
+import LoginDialog from "../dialog/LoginDialog";
 
 const Header = props => {
   const [open, setOpen] = useState(false);
@@ -66,7 +66,7 @@ const Header = props => {
           </div>
         </div>
       </nav>
-      <MyDialog open={open} handleClose={handleClose} />
+      <LoginDialog open={open} handleClose={handleClose} />
     </Router>
   );
 };
