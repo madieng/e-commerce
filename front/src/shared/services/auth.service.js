@@ -11,10 +11,25 @@ const login = async values => {
     }
     return result.data;
   } catch (error) {
+    logout();
     console.log("ERROR", error);
   }
 };
 
+const isAuthenticated = () => {
+  const token = localStorage.getItem("authtoken");
+  if (token) {
+    return true;
+  }
+  return false;
+};
+
+const logout = () => {
+  localStorage.removeItem("authtoken");
+};
+
 export default {
-  login
+  login,
+  isAuthenticated,
+  logout
 };

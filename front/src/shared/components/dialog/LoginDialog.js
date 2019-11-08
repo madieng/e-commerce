@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Dialog, DialogContent, makeStyles } from "@material-ui/core";
 import Login from "../../../components/login/Login";
+import LoginDialogContext from "./../../context/login-dialog.context";
 
 const useStyles = makeStyles({
   paper: {
@@ -8,8 +9,10 @@ const useStyles = makeStyles({
   }
 });
 
-const LoginDialog = ({ open, handleClose }) => {
+const LoginDialog = props => {
   const classes = useStyles();
+  const { open, setOpen } = useContext(LoginDialogContext);
+  const handleClose = () => setOpen(false);
   return (
     <Dialog open={open} onClose={handleClose} className={classes.paper}>
       <DialogContent>

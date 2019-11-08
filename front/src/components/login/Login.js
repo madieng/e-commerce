@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Button, Container, Row } from "react-bootstrap";
 import AuthService from "../../shared/services/auth.service";
 import "./Login.css";
+import AuthContext from "./../../shared/context/auth.context";
+import DrawerContext from "./../../shared/context/drawer.context";
 
-const Login = ({ handleClose }) => {
+const Login = props => {
+  const { setIsAuthenticated } = useContext(AuthContext);
+  const { openDrawer, setOpenDrawer } = useContext(DrawerContext);
   const validate = values => {
     let errors = {};
     if (!values.email) {
@@ -16,18 +20,24 @@ const Login = ({ handleClose }) => {
     return errors;
   };
 
+  const handleClose = () => {
+    setOpenDrawer({ ...openDrawer, ...{ login: false } });
+  };
+
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       const data = await AuthService.login(values);
       if (data.auth) {
         // On redirige l'utilisateur vers la page d'accueil
-        console.log(data);
+        setIsAuthenticated(true);
         setSubmitting(false);
+        handleClose();
       } else {
-        console.log(data);
+        setIsAuthenticated(false);
         setSubmitting(true);
       }
     } catch (error) {
+      setIsAuthenticated(false);
       console.log("ERROR: ", error);
     }
   };
@@ -36,7 +46,7 @@ const Login = ({ handleClose }) => {
     <Container>
       <Row>
         <div className="mx-auto w-100">
-          <div className="my-5">
+          <div className="my-5 p-2">
             <h4 className="text-center"> Connexion </h4>
             <Formik
               initialValues={{
