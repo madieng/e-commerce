@@ -1,4 +1,10 @@
-import { Avatar, Drawer, Grid, makeStyles } from "@material-ui/core";
+import {
+  Avatar,
+  Drawer,
+  Grid,
+  makeStyles,
+  Button
+} from "@material-ui/core";
 import { deepPurple } from "@material-ui/core/colors";
 import React, { useContext } from "react";
 import Login from "../../../components/login/Login";
@@ -7,14 +13,28 @@ import AuthContext from "./../../context/auth.context";
 import DrawerContext from "./../../context/drawer.context";
 import Profile from "./Profile";
 import Register from "../../../components/register/Register";
-const useStyles = makeStyles({
+import LockIcon from "@material-ui/icons/Lock";
+
+const useStyles = makeStyles(theme => ({
   purpleAvatar: {
     margin: 10,
     color: "#fff",
     backgroundColor: deepPurple[500],
     cursor: "pointer"
+  },
+  margin: {
+    margin: theme.spacing(1),
+    backgroundColor: "#18BC9C",
+    color: "#ffffff",
+    "&:hover": {
+      backgroundColor: "#18BC9C",
+      color: "#ffffff"
+    }
+  },
+  extendedIcon: {
+    marginRight: theme.spacing(1)
   }
-});
+}));
 
 const Buttons = props => {
   const classes = useStyles();
@@ -29,18 +49,15 @@ const Buttons = props => {
     <>
       {!isAuthenticated ? (
         <>
-          <button
-            className="btn btn-info my-2 mr-2 my-sm-0"
-            onClick={() => toggleDrawer("register", true)}
-          >
-            Inscription
-          </button>
-          <button
-            className="btn btn-success my-2 mr-2 my-sm-0"
+          <Button
+            size="small"
+            aria-label="Connexion"
+            className={classes.margin}
             onClick={() => toggleDrawer("login", true)}
           >
+            <LockIcon fontSize="small" className={classes.extendedIcon} />
             Connexion
-          </button>
+          </Button>
         </>
       ) : (
         <>

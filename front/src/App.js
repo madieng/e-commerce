@@ -7,6 +7,7 @@ import Header from "./shared/components/header/Header";
 import AuthService from "./shared/services/auth.service";
 import AuthContext from "./shared/context/auth.context";
 import DrawerContext from "./shared/context/drawer.context";
+import SnackbarContext from "./shared/context/snackbar.context";
 
 function App() {
   // Authentificated
@@ -27,18 +28,26 @@ function App() {
     openDrawer,
     setOpenDrawer
   };
+  // Snackbar
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const snackbarContextValue = {
+    openSnackbar,
+    setOpenSnackbar
+  };
 
   return (
     <div className="App">
       <AuthContext.Provider value={authContextValue}>
-        <DrawerContext.Provider value={drawerContextValue}>
-          <Router>
-            <Header />
-            <Switch>
-              <Route exact path="/" component={Home} />
-            </Switch>
-          </Router>
-        </DrawerContext.Provider>
+        <SnackbarContext.Provider value={snackbarContextValue}>
+          <DrawerContext.Provider value={drawerContextValue}>
+            <Router>
+              <Header />
+              <Switch>
+                <Route exact path="/" component={Home} />
+              </Switch>
+            </Router>
+          </DrawerContext.Provider>
+        </SnackbarContext.Provider>
       </AuthContext.Provider>
     </div>
   );
