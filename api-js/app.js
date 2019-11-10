@@ -3,11 +3,7 @@ const Cors = require("cors");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
 const passport = require("passport");
-const mongoose = require("mongoose");
-
-mongoose.connect("mongodb://localhost:27017/ecommerce", {
-  useNewUrlParser: true
-});
+require("./src/config/db.config");
 
 const app = express();
 
