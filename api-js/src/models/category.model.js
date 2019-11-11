@@ -17,6 +17,10 @@ const CategorySchema = new Schema({
       enum: ["Actif", "Inactif"],
       default: "Actif"
     }
+  },
+  parentId: {
+    type: Schema.Types.ObjectId,
+    ref: "Category"
   }
 });
 

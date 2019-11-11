@@ -2,8 +2,14 @@ const User = require("../models/user.model");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
 const jwtSecret = require("./../config/jwt.config");
+const auth = require("./../services/auth.service");
+const UserController = require("./../controller/user.controller");
 
 module.exports = app => {
+  app.get("/users", auth.isAuthentificate, (req, res, next) => {
+    UserController.findAll(req, res);
+  });
+
   app.post("/users/register", (req, res, next) => {
     passport.authenticate("register", (err, user, info) => {
       if (err) {
